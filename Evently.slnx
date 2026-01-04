@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Aspire/">
+    <Project Path="Evently.AppHost/Evently.AppHost.csproj" Id="00d1f890-2b62-4771-b96d-53ef4a216bdf" />
+    <Project Path="Evently.ServiceDefaults/Evently.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/API/">
+    <Project Path="Evently.Api/Evently.Api.csproj" Id="fa25b685-71f9-41cb-8d6b-5526e156778a" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Events/">
+    <Project Path="Evently.Modules.Events.Api/Evently.Modules.Events.Api.csproj" Id="0ff4fe0e-6ea5-45db-8cb1-267ec1cfb192" />
+  </Folder>
+</Solution>

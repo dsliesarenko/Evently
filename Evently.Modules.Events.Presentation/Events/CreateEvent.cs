@@ -1,4 +1,6 @@
 ﻿using Evently.Modules.Events.Application.Events.CreateEvent;
+using Evently.Modules.Events.Domain.Abstractions;
+using Evently.Modules.Events.Presentation.ApiResults;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -14,17 +16,19 @@ internal static class CreateEvent
                 "events",
                 async (Request request, ISender sender, CancellationToken ct) =>
                 {
-                    var command = new CreateEventCommand(
-                        request.Title,
-                        request.Description,
-                        request.Location,
-                        request.StartsAtUtc,
-                        request.EndsAtUtc
+                    Result<Guid> result = await sender.Send(
+                        new CreateEventCommand(
+                            request.CategoryId,
+                            request.Title,
+                            request.Description,
+                            request.Location,
+                            request.StartsAtUtc,
+                            request.EndsAtUtc
+                        ),
+                        ct
                     );
 
-                    Guid eventId = await sender.Send(command, ct);
-
-                    return Results.Ok(eventId);
+                    return result.Match(Results.Ok, ApiResults.ApiResults.Problem);
                 }
             )
             .WithTags(Tags.Events);
@@ -32,6 +36,8 @@ internal static class CreateEvent
 
     internal sealed class Request
     {
+        public Guid CategoryId { get; init; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }

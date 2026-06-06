@@ -12,7 +12,11 @@ public static class Registration
             config.Assemblies = [typeof(AssemblyReference)];
             config.ServiceLifetime = ServiceLifetime.Scoped;
 
-            config.PipelineBehaviors = [typeof(RequestLoggingPipelineBehavior<,>)];
+            config.PipelineBehaviors =
+            [
+                typeof(ExceptionHandlingPipelineBehavior<,>),
+                typeof(RequestLoggingPipelineBehavior<,>),
+            ];
         });
     }
 }

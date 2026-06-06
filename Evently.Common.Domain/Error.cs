@@ -1,4 +1,4 @@
-﻿namespace Evently.Modules.Events.Domain.Abstractions;
+﻿namespace Evently.Common.Domain;
 
 public record Error
 {
@@ -6,7 +6,8 @@ public record Error
     public static readonly Error NullValue = new(
         "General.Null",
         "Null value was provided",
-        ErrorType.Failure);
+        ErrorType.Failure
+    );
 
     public Error(string code, string description, ErrorType type)
     {

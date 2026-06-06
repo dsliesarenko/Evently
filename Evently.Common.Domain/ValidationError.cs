@@ -1,12 +1,9 @@
-﻿namespace Evently.Modules.Events.Domain.Abstractions;
+﻿namespace Evently.Common.Domain;
 
 public sealed record ValidationError : Error
 {
     public ValidationError(Error[] errors)
-        : base(
-            "General.Validation",
-            "One or more validation errors occurred",
-            ErrorType.Validation)
+        : base("General.Validation", "One or more validation errors occurred", ErrorType.Validation)
     {
         Errors = errors;
     }

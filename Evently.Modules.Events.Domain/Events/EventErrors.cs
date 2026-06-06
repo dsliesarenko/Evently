@@ -1,4 +1,4 @@
-﻿using Evently.Modules.Events.Domain.Abstractions;
+﻿using Evently.Common.Domain;
 
 namespace Evently.Modules.Events.Domain.Events;
 
@@ -9,25 +9,31 @@ public static class EventErrors
 
     public static readonly Error StartDateInPast = Error.Problem(
         "Events.StartDateInPast",
-        "The event start date is in the past");
+        "The event start date is in the past"
+    );
 
     public static readonly Error EndDatePrecedesStartDate = Error.Problem(
         "Events.EndDatePrecedesStartDate",
-        "The event end date precedes the start date");
+        "The event end date precedes the start date"
+    );
 
     public static readonly Error NoTicketsFound = Error.Problem(
         "Events.NoTicketsFound",
-        "The event does not have any ticket types defined");
+        "The event does not have any ticket types defined"
+    );
 
-    public static readonly Error NotDraft = Error.Problem("Events.NotDraft", "The event is not in draft status");
-
+    public static readonly Error NotDraft = Error.Problem(
+        "Events.NotDraft",
+        "The event is not in draft status"
+    );
 
     public static readonly Error AlreadyCanceled = Error.Problem(
         "Events.AlreadyCanceled",
-        "The event was already canceled");
-
+        "The event was already canceled"
+    );
 
     public static readonly Error AlreadyStarted = Error.Problem(
         "Events.AlreadyStarted",
-        "The event has already started");
+        "The event has already started"
+    );
 }

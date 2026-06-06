@@ -1,12 +1,10 @@
-﻿using Evently.Modules.Events.Domain.Abstractions;
+﻿using Evently.Common.Domain;
 
 namespace Evently.Modules.Events.Domain.Categories;
 
 public sealed class Category : Entity
 {
-    private Category()
-    {
-    }
+    private Category() { }
 
     public Guid Id { get; private set; }
 
@@ -20,7 +18,7 @@ public sealed class Category : Entity
         {
             Id = Guid.NewGuid(),
             Name = name,
-            IsArchived = false
+            IsArchived = false,
         };
 
         category.Raise(new CategoryCreatedDomainEvent(category.Id));

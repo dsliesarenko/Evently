@@ -1,5 +1,5 @@
-﻿using Evently.Modules.Events.Application.Categories.CreateCategory;
-using Evently.Modules.Events.Domain.Abstractions;
+﻿using Evently.Common.Domain;
+using Evently.Modules.Events.Application.Categories.CreateCategory;
 using Evently.Modules.Events.Presentation.ApiResults;
 using Mediator;
 using Microsoft.AspNetCore.Builder;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Evently.Common.Application.Behaviors;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evently.Modules.Events.Application;
 
@@ -8,8 +9,10 @@ public static class Registration
     {
         services.AddMediator(config =>
         {
-            config.Assemblies = [typeof(Application.AssemblyReference)];
+            config.Assemblies = [typeof(AssemblyReference)];
             config.ServiceLifetime = ServiceLifetime.Scoped;
+
+            config.PipelineBehaviors = [typeof(RequestLoggingPipelineBehavior<,>)];
         });
     }
 }

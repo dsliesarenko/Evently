@@ -1,4 +1,4 @@
-﻿using Evently.Modules.Events.Application.Abstractions.Messaging;
+﻿using Evently.Common.Application.Messaging;
 
 namespace Evently.Modules.Events.Application.Events.SearchEvents;
 
@@ -7,4 +7,5 @@ public sealed record SearchEventsQuery(
     DateTime? StartDate,
     DateTime? EndDate,
     int Page,
-    int PageSize) : IQuery<SearchEventsResponse>;
+    int PageSize
+) : IQuery<SearchEventsResponse>;

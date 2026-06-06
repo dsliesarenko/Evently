@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 using Dapper;
-using Evently.Modules.Events.Application.Abstractions.Data;
+using Evently.Common.Application.Data;
 using Mediator;
 
 namespace Evently.Modules.Events.Application.Events.GetEvent;

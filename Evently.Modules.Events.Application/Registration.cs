@@ -16,6 +16,7 @@ public static class Registration
             [
                 typeof(ExceptionHandlingPipelineBehavior<,>),
                 typeof(RequestLoggingPipelineBehavior<,>),
+                typeof(ValidationPipelineBehavior<,>),
             ];
         });
     }

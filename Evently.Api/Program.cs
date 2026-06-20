@@ -17,7 +17,10 @@ builder.Services.AddApplicationCommon([
     Evently.Modules.Events.Application.AssemblyReference.Assembly,
 ]);
 
-builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("Database")!);
+builder.Services.AddInfrastructure(
+    builder.Configuration.GetConnectionString("Database")!,
+    builder.Configuration.GetConnectionString("Cache")!
+);
 
 builder.Configuration.AddModuleConfiguration(["events"]);
 

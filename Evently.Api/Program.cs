@@ -17,12 +17,14 @@ builder.Services.AddApplicationCommon([
     Evently.Modules.Events.Application.AssemblyReference.Assembly,
 ]);
 
-builder.Services.AddInfrastructure(
-    builder.Configuration.GetConnectionString("Database")!,
-    builder.Configuration.GetConnectionString("Cache")!
-);
+string dbConnectionString = builder.Configuration.GetConnectionString("Database")!;
+string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
+
+builder.Services.AddInfrastructure(dbConnectionString, redisConnectionString);
 
 builder.Configuration.AddModuleConfiguration(["events"]);
+
+builder.Services.AddHealthChecks().AddNpgSql(dbConnectionString).AddRedis(redisConnectionString);
 
 builder.Services.AddEventsModule(builder.Configuration);
 

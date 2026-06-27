@@ -2,7 +2,9 @@ using Evently.Api.Extensions;
 using Evently.Api.Middleware;
 using Evently.Common.Application;
 using Evently.Common.Infrastructure;
+using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Infrastructure;
+using Evently.Modules.Events.Presentation;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +15,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
-builder.Services.AddApplicationCommon([
-    Evently.Modules.Events.Application.AssemblyReference.Assembly,
-]);
+builder.Services.AddApplicationCommon([AssemblyReference.Assembly]);
 
 string dbConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.ApplyMigrations();
 }
 
-EventsModule.MapEndpoints(app);
+app.MapEndpoints();
 
 app.UseExceptionHandler();
 

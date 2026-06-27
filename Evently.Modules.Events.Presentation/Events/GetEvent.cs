@@ -1,4 +1,4 @@
-﻿using Evently.Modules.Events.Application.Events;
+﻿using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Application.Events.GetEvent;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Evently.Modules.Events.Presentation.Events;
 
-internal static class GetEvent
+internal sealed class GetEvent : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet(
                 "events/{id}",

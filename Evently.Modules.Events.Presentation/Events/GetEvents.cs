@@ -1,6 +1,7 @@
 ﻿using Evently.Common.Domain;
+using Evently.Common.Presentation.ApiResults;
+using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Application.Events.GetEvents;
-using Evently.Modules.Events.Presentation.ApiResults;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -8,9 +9,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Evently.Modules.Events.Presentation.Events;
 
-internal static class GetEvents
+internal sealed class GetEvents : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet(
                 "events",
@@ -20,7 +21,7 @@ internal static class GetEvents
                         new GetEventsQuery()
                     );
 
-                    return result.Match(Results.Ok, ApiResults.ApiResults.Problem);
+                    return result.Match(Results.Ok, ApiResults.Problem);
                 }
             )
             .WithTags(Tags.Events);

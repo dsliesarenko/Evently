@@ -1,4 +1,5 @@
-﻿using Evently.Common.Presentation.Endpoints;
+﻿using Evently.Common.Infrastructure.Interceptors;
+using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Application;
 using Evently.Modules.Events.Application.Abstractions.Data;
 using Evently.Modules.Events.Domain.Categories;
@@ -9,10 +10,6 @@ using Evently.Modules.Events.Infrastructure.Database;
 using Evently.Modules.Events.Infrastructure.Database.Migrations;
 using Evently.Modules.Events.Infrastructure.Events;
 using Evently.Modules.Events.Infrastructure.TicketTypes;
-using Evently.Modules.Events.Presentation.Categories;
-using Evently.Modules.Events.Presentation.Events;
-using Evently.Modules.Events.Presentation.TicketTypes;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,10 +37,14 @@ public static class EventsModule
     {
         string databaseConnectionString = configuration.GetConnectionString("Database")!;
 
-        services.AddDbContext<EventsDbContext>(options =>
-        {
-            options.ConfigureEventsDbContext(databaseConnectionString);
-        });
+        services.AddDbContext<EventsDbContext>(
+            (sp, options) =>
+            {
+                options
+                    .ConfigureEventsDbContext(databaseConnectionString)
+                    .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>());
+            }
+        );
 
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();

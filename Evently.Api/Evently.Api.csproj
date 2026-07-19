@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Evently.Modules.Events.Infrastructure\Evently.Modules.Events.Infrastructure.csproj" />
-    <ProjectReference Include="..\Evently.ServiceDefaults\Evently.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Modules\Events\Evently.Modules.Events.Infrastructure\Evently.Modules.Events.Infrastructure.csproj" />
+    <ProjectReference Include="..\Aspire\Evently.ServiceDefaults\Evently.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Modules\Users\Evently.Modules.Users.Infrastructure\Evently.Modules.Users.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

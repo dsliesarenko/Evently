@@ -4,6 +4,7 @@ using Evently.Common.Application;
 using Evently.Common.Infrastructure;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Infrastructure;
+using Evently.Modules.Ticketing.Infrastructure;
 using Evently.Modules.Users.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddApplicationCommon([
     Evently.Modules.Events.Presentation.AssemblyReference.Assembly,
     Evently.Modules.Users.Presentation.AssemblyReference.Assembly,
+    Evently.Modules.Ticketing.Presentation.AssemblyReference.Assembly,
 ]);
 
 string dbConnectionString = builder.Configuration.GetConnectionString("Database")!;
@@ -25,12 +27,13 @@ string redisConnectionString = builder.Configuration.GetConnectionString("Cache"
 
 builder.Services.AddInfrastructure(dbConnectionString, redisConnectionString);
 
-builder.Configuration.AddModuleConfiguration(["events", "users"]);
+builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing"]);
 
 builder.Services.AddHealthChecks().AddNpgSql(dbConnectionString).AddRedis(redisConnectionString);
 
 builder.Services.AddEventsModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
+builder.Services.AddTicketingModule(builder.Configuration);
 
 WebApplication app = builder.Build();
 

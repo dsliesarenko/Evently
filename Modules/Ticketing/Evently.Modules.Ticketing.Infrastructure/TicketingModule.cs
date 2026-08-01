@@ -1,4 +1,5 @@
 ﻿using Evently.Common.Presentation.Endpoints;
+using Evently.Modules.Ticketing.Application.Carts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,11 +19,16 @@ public static class TicketingModule
         return services;
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Style",
+        "IDE0060:Remove unused parameter",
+        Justification = "Can be used later"
+    )]
     private static void AddInfrastructure(
         this IServiceCollection services,
         IConfiguration configuration
     )
     {
-        // Will implement this later.
+        services.AddSingleton<CartService>();
     }
 }

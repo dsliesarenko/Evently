@@ -24,6 +24,7 @@
     <Project Path="Modules/Events/Evently.Modules.Events.Domain/Evently.Modules.Events.Domain.csproj" Id="f09cc0d8-50af-4838-aae8-64131c79636d" />
     <Project Path="Modules/Events/Evently.Modules.Events.Infrastructure/Evently.Modules.Events.Infrastructure.csproj" Id="9c00fcd6-4020-4262-893e-d28167f8ec99" />
     <Project Path="Modules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj" Id="9d8f1d49-2868-4fcd-9c73-0b64ad391048" />
+    <Project Path="Modules/Events/Evently.Modules.Events.PublicApi/Evently.Modules.Events.PublicApi.csproj" Id="d0a1e852-bf67-4c0d-a0bb-710c991bd827" />
   </Folder>
   <Folder Name="/src/Modules/Ticketing/">
     <Project Path="Modules/Ticketing/Evently.Modules.Ticketing.Application/Evently.Modules.Ticketing.Application.csproj" />
@@ -36,5 +37,6 @@
     <Project Path="Modules/Users/Evently.Modules.Users.Domain/Evently.Modules.Users.Domain.csproj" />
     <Project Path="Modules/Users/Evently.Modules.Users.Infrastructure/Evently.Modules.Users.Infrastructure.csproj" />
     <Project Path="Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj" />
+    <Project Path="Modules/Users/Evently.Modules.Users.PublicApi/Evently.Modules.Users.PublicApi.csproj" Id="592ca9b1-e99e-48a7-a9dc-9b38b05b7aa8" />
   </Folder>
 </Solution>

@@ -5,12 +5,20 @@ using Evently.Modules.Ticketing.Domain.Customers;
 
 namespace Evently.Modules.Ticketing.Application.Customers.UpdateCustomer;
 
-internal sealed class UpdateCustomerCommandHandler(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
-    : ICommandHandler<UpdateCustomerCommand>
+internal sealed class UpdateCustomerCommandHandler(
+    ICustomerRepository customerRepository,
+    IUnitOfWork unitOfWork
+) : ICommandHandler<UpdateCustomerCommand>
 {
-    public async Task<Result> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(
+        UpdateCustomerCommand request,
+        CancellationToken cancellationToken
+    )
     {
-        Customer? customer = await customerRepository.GetAsync(request.CustomerId, cancellationToken);
+        Customer? customer = await customerRepository.GetAsync(
+            request.CustomerId,
+            cancellationToken
+        );
 
         if (customer is null)
         {

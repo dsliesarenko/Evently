@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="Mediator.SourceGenerator">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <InternalsVisibleTo Include="Evently.Api" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Evently.Common.Application\Evently.Common.Application.csproj" />
-    <ProjectReference Include="..\..\Ticketing\Evently.Modules.Ticketing.PublicApi\Evently.Modules.Ticketing.PublicApi.csproj" />
     <ProjectReference Include="..\Evently.Modules.Users.Domain\Evently.Modules.Users.Domain.csproj" />
+    <ProjectReference Include="..\Evently.Modules.Users.IntegrationEvents\Evently.Modules.Users.IntegrationEvents.csproj" />
   </ItemGroup>
 </Project>

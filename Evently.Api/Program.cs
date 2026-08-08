@@ -1,6 +1,7 @@
 using Evently.Api.Extensions;
 using Evently.Api.Middleware;
 using Evently.Common.Application;
+using Evently.Common.Application.Behaviors;
 using Evently.Common.Infrastructure;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Infrastructure;
@@ -25,11 +26,17 @@ builder.Services.AddApplicationCommon([
 string dbConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 
-builder.Services.AddInfrastructure(dbConnectionString, redisConnectionString);
+builder.Services.AddInfrastructure(
+    [TicketingModule.ConfigureConsumers],
+    dbConnectionString,
+    redisConnectionString
+);
 
 builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing"]);
 
 builder.Services.AddHealthChecks().AddNpgSql(dbConnectionString).AddRedis(redisConnectionString);
+
+builder.Services.AddApplicationMediator();
 
 builder.Services.AddEventsModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);

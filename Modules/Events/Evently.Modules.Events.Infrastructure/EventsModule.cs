@@ -1,7 +1,6 @@
 ﻿using Evently.Common.Infrastructure.Data;
 using Evently.Common.Infrastructure.Interceptors;
 using Evently.Common.Presentation.Endpoints;
-using Evently.Modules.Events.Application;
 using Evently.Modules.Events.Application.Abstractions.Data;
 using Evently.Modules.Events.Domain.Categories;
 using Evently.Modules.Events.Domain.Events;
@@ -26,7 +25,6 @@ public static class EventsModule
     )
     {
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
-        services.AddApplication();
         services.AddInfrastructure(configuration);
 
         return services;

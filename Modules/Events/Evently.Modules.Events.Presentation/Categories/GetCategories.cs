@@ -44,6 +44,7 @@ internal sealed class GetCategories : IEndpoint
                     );
                 }
             )
+            .RequireAuthorization()
             .WithTags(Tags.Categories);
     }
 }

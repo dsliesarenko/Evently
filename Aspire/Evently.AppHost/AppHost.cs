@@ -29,6 +29,7 @@ IResourceBuilder<KeycloakResource> keycloak = builder
 builder
     .AddProject<Projects.Evently_Api>("evently-api")
     .WithEnvironment("ConnectionStrings__Database", db)
+    .WithEnvironment("Keycloak__Url", keycloak.GetEndpoint("http"))
     .WithReference(cache)
     .WithReference(keycloak)
     .WaitFor(db)

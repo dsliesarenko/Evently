@@ -1,13 +1,19 @@
-﻿using Evently.Common.Infrastructure.Data;
+﻿using Evently.Common.Application.Authorization;
+using Evently.Common.Infrastructure.Data;
 using Evently.Common.Infrastructure.Interceptors;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Users.Application.Abstractions.Data;
+using Evently.Modules.Users.Application.Abstractions.Identity;
 using Evently.Modules.Users.Domain.Users;
+using Evently.Modules.Users.Infrastructure.Authorization;
 using Evently.Modules.Users.Infrastructure.Database;
+using Evently.Modules.Users.Infrastructure.Identity;
 using Evently.Modules.Users.Infrastructure.Users;
+using MassTransit.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Evently.Modules.Users.Infrastructure;
 
@@ -29,6 +35,27 @@ public static class UsersModule
         IConfiguration configuration
     )
     {
+        services.AddScoped<IPermissionService, PermissionService>();
+
+        services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
+
+        services.AddTransient<KeyCloakAuthDelegatingHandler>();
+
+        services
+            .AddHttpClient<KeyCloakClient>(
+                (serviceProvider, httpClient) =>
+                {
+                    KeyCloakOptions keyCloakOptions = serviceProvider
+                        .GetRequiredService<IOptions<KeyCloakOptions>>()
+                        .Value;
+
+                    httpClient.BaseAddress = new Uri(keyCloakOptions.AdminUrl);
+                }
+            )
+            .AddHttpMessageHandler<KeyCloakAuthDelegatingHandler>();
+
+        services.AddTransient<IIdentityProviderService, IdentityProviderService>();
+
         string databaseConnectionString = configuration.GetConnectionString("Database")!;
 
         services.AddDbContext<UsersDbContext>(

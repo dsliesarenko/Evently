@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
@@ -21,5 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Caching\" />
+    <Folder Include="Authorization\" />
   </ItemGroup>
 </Project>

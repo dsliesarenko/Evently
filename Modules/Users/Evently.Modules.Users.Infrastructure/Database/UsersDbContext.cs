@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evently.Modules.Users.Infrastructure.Database;
 
-public sealed class UsersDbContext(DbContextOptions<UsersDbContext> options) : DbContext(options), IUnitOfWork
+public sealed class UsersDbContext(DbContextOptions<UsersDbContext> options)
+    : DbContext(options),
+        IUnitOfWork
 {
     internal DbSet<User> Users { get; set; }
 
@@ -14,5 +16,7 @@ public sealed class UsersDbContext(DbContextOptions<UsersDbContext> options) : D
         modelBuilder.HasDefaultSchema(Schemas.Users);
 
         modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        modelBuilder.ApplyConfiguration(new PermissionConfiguration());
     }
 }

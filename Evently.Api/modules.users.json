@@ -1,5 +1,11 @@
 {
   "Users": {
-
+    "Keycloak": {
+      "AdminUrl": "",
+      "TokenUrl": "",
+      "ConfidentialClientId": "",
+      "ConfidentialClientSecret": "",
+      "PublicClientId": ""
+    }
   }
 }

@@ -389,3 +389,7 @@ dotnet_diagnostic.S4136.severity = none
 dotnet_diagnostic.S6605.severity = none
 
 dotnet_diagnostic.S125.severity = none
+
+[Evently.ArchitectureTests/**/*.cs]
+# xUnit v2 requires public test classes and therefore public base classes.
+dotnet_diagnostic.CA1515.severity = none
